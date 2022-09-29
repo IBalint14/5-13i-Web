@@ -1,0 +1,22 @@
+table{
+  border-collapse: collapse;
+  width: 40%;
+  background-color: rgb(237, 243, 160);
+  border-color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+th , td{
+    border: 2px solid #a90505;
+    text-align: center;
+}
+.magam{
+    background-color: rgb(105, 219, 105);
+}
+body{
+    background-color: rgb(134, 134, 134); 
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
