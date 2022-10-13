@@ -28,7 +28,7 @@ if(isset($_POST['keresettNev'])){
     if($talalatok = $szemely->nevetKeres($_POST['keresettNev'])){
 
         foreach($talalatok as  $kulcs=>$nev){
-            echo "<h2><a href=\"\"index.php?szemelyId=$kulcs\">$nev</a></h2>";
+            echo "<h2><a href=\"index.php?szemelyId=$kulcs\">$nev</a></h2>";
         }
     }
     else {

@@ -31,5 +31,21 @@
             }
             return $talalatok; 
         }
+
+        public function getOsztaly($szemelyId){
+
+            $sql = "SELECT osztalyId FROM sorok WHERE (";
+		for($i=1;$i<=5;$i++){
+			$sql.= "nev$i = ".$szemelyId;
+			if($i < 5) $sql .= " OR ";
+			else $sql .= " )";
+		}
+		if($result = $this->db->dbSelect($sql)){
+			if($row = $result-> fetch_assoc()){
+				return $row['osztalyId'];
+			}
+		}
+
+        }
     }
 ?>

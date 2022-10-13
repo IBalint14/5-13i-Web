@@ -23,6 +23,15 @@
 		$osztaly = $_GET['osztalyId'];
 	}
 
+	//szemelyId=34
+	//melyik osztályban van?
+	if(isset($_GET['szemelyId'])){
+		if($szemelyOsztalya = $szemely->getOsztaly($_GET['szemelyId'])){
+				$osztaly = $szemelyOsztalya;
+			}
+		}
+
+
 	$osztalyPeldany = new Osztaly($osztaly, $db);
 
 	$osztalyok = $osztalyPeldany->getAll($db);
@@ -63,14 +72,19 @@
 						$nev = "_";
 						$mezoNev = 'nev'.$i;
 						if($row[$mezoNev] != null ){
-							
 							$nev = $szemely->getNev($row[$mezoNev], $db);
-							}												
+							}	
+							$bg = "";	
+						if(isset($_GET['szemelyId'])){
+								if($_GET['szemelyId'] == $row[$mezoNev])
+								$bg = "background-color:rgb(108, 167, 255);";
+
+							}										
 						if($row['sorId'] == $sajatMagam ['sorId'] and $sajatMagam['mezoNeve'] == $mezoNev){
-							echo "<td style=\"background-color:rgb(105, 219, 105);\">".$nev."</td>\n";
-						}
+							echo "<td style=\"background-color:rgb(105, 219, 105);$bg\">".$nev."</td>\n";
+							}
 						 else 
-							echo "<td>".$nev."</td>\n";		
+							echo "<td style=\"$bg\">".$nev."</td>\n";		
 			}
 					echo "</tr>";
 		}
