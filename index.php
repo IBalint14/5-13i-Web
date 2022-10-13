@@ -34,28 +34,10 @@
 	<title><?php echo "$osztalyok[$osztaly]" ?></title>
 </head>
 <body>
-	<?php
-
-	print "A post tartamla: ";
-	print_r($_POST);
-	if(isset($_POST['keresettNev'])){
-		echo $sql = "SELECT osztalyId FROM szemelyek INNER JOIN sorok 
-		ON (szemelyek.szemelyId = sorok.nev1 
-			OR szemelyek.szemelyId = sorok.nev2
-			OR szemelyek.szemelyId = sorok.nev3 
-			OR szemelyek.szemelyId = sorok.nev4 
-			OR szemelyek.szemelyId = sorok.nev5) 
-		WHERE nev LIKE '".$_POST['keresettNev']."%';";
-		
-		if($result = $db->dbSelect($sql)){
-			$row = $result->fetch_assoc();
-			print_r($row);
-			$osztaly = $row['osztalyId'];
-		}
-		}			
+	<?php			
 		echo "<h1>$osztalyok[$osztaly]</h1>";
 		?>
-		<form method="post" action="index.php">
+		<form method="post" action="lista.php">
 			<input type="text" name="keresettNev">
 			<input type="submit" value="KERES">
 		</form>	
@@ -64,7 +46,6 @@
 				if($kulcs != $osztaly){
 					echo "<a href = \"index.php?osztalyId=$kulcs\"> $ertek </a><br>";			
 				}
-			
 		}		
 	?>
     <table >
@@ -82,8 +63,8 @@
 						$nev = "_";
 						$mezoNev = 'nev'.$i;
 						if($row[$mezoNev] != null ){
-							$szemely = new Szemely($row[$mezoNev], $db);
-							$nev = $szemely->getNev();
+							
+							$nev = $szemely->getNev($row[$mezoNev], $db);
 							}												
 						if($row['sorId'] == $sajatMagam ['sorId'] and $sajatMagam['mezoNeve'] == $mezoNev){
 							echo "<td style=\"background-color:rgb(105, 219, 105);\">".$nev."</td>\n";
