@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tablr.css">
-<?php
-require 'db.inc.php';
-$db = new DataBase();
+        <?php
+        require 'db.inc.php';
+        $db = new DataBase();
 
-require 'model/Szemely.php';
-$szemely = new Szemely($db);
+        require 'model/Szemely.php';
+        $szemely = new Szemely($db);
 
-require 'model/Osztaly.php';
+        require 'model/Osztaly.php';
 
-?>
+        ?>
 <title>Találati lista</title>
 </head>
 <body>
