@@ -53,7 +53,7 @@
 	<?php	
 		foreach($osztalyok as $kulcs => $ertek){
 				if($kulcs != $osztaly){
-					echo "<a href = \"index.php?osztalyId=$kulcs\"> $ertek </a><br>";			
+					echo "<h1><a href = \"index.php?osztalyId=$kulcs\"> $ertek </a></h1><br>";			
 				}
 		}		
 	?>
@@ -95,5 +95,14 @@
 			}			
 			
 		?>
+
+
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+			A kiválasztott kép:
+  	<input type="file" name="fileToUpload" id="fileToUpload">
+  	<input type="submit" value="Upload Image" name="submit">
+	</form>
+
+		
 </body>
 </html>
