@@ -10,6 +10,8 @@
 <body>
     
 <?php
+if(array_key_exists('fileToUpload', $_FILES)){
+    if(array_key_exists('error', $_FILES['fileToUpload']));
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -33,9 +35,9 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
   } else {
     echo "Sorry, there was an error uploading your file.";
   }
-
+}
   $dir = "uploads/";
-    $image = glob($dir. "/*.jpg");
+    $image = glob($dir. "/*");
     ?>
  <div class="gallery"><?php 
         foreach($image as $image){

@@ -100,7 +100,7 @@
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 			A kiválasztott kép:
   	<input type="file" name="fileToUpload" id="fileToUpload">
-  	<input type="submit" value="Upload Image" name="submit">
+  	<input type="submit" value="Feltöltés" name="submit">
 	</form>
 	
 	<button> <a href="upload.php">Képek</a></button>
