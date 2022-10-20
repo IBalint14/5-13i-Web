@@ -102,7 +102,8 @@
   	<input type="file" name="fileToUpload" id="fileToUpload">
   	<input type="submit" value="Upload Image" name="submit">
 	</form>
-
+	
+	<button> <a href="upload.php">Képek</a></button>
 		
 </body>
 </html>
