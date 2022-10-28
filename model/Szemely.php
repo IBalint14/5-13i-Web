@@ -48,4 +48,23 @@
 
         }
     }
+        public function checkLogin($felhasznalonev,$jelszo){
+            $sql = "SELECT * from szemelyek where felhasznalonev ='".$felhasznalonev."'";
+        if($result = $this->db->dbSelect($sql)){
+            if($row = $result->fetch_assoc()){
+                if($row['jelszo'] == md5($jelszo)){
+                    $eredmeny= 2; //"Sikeres belépés;
+                    $_SESSION["nev"] = $row['nev'];
+                    $_SESSION["id"] = $row['szId'];
+                }else{
+                    $eredmeny= 1; //"Sikertelen belépés: hibás jelszó";
+                    }
+                }
+            }
+            else{
+                $eredmeny= 0; //"Nincs ilyen felhasználónév: ";
+            }
+            return $eredmeny;
+        }
+    
 ?>
