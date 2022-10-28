@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -43,6 +46,16 @@
 	<title><?php echo "$osztalyok[$osztaly]" ?></title>
 </head>
 <body>
+
+	<?php
+		if(isset($_session['id'])){
+			echo "Üdv ". $_SESSION['nev'];
+			echo '<a href= "belepes.php?kilepes=1"> Kilépés<a>';
+		}else{
+			echo '<a href= "belepes.php"> Belépés</a>';
+		}
+	?>
+
 	<?php			
 		echo "<h1>$osztalyok[$osztaly]</h1>";
 		?>
@@ -96,6 +109,10 @@
 			
 		?>
 
+	<hr>
+	<div>
+		<a href="belepes.php">Belépés</a>
+	</div>
 
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 			A kiválasztott kép:
@@ -104,6 +121,6 @@
 	</form>
 	
 	<button> <a href="upload.php">Képek</a></button>
-		
+	
 </body>
 </html>
