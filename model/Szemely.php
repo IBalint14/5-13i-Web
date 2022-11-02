@@ -35,17 +35,36 @@
         public function getOsztaly($szemelyId){
 
             $sql = "SELECT osztalyId FROM sorok WHERE (";
-		for($i=1;$i<=5;$i++){
-			$sql.= "nev$i = ".$szemelyId;
-			if($i < 5) $sql .= " OR ";
-			else $sql .= " )";
-		}
-		if($result = $this->db->dbSelect($sql)){
-			if($row = $result-> fetch_assoc()){
-				return $row['osztalyId'];
-			}
-		}
+            for($i=1;$i<=5;$i++){
+                $sql.= "nev$i = ".$szemelyId;
+                if($i < 5) $sql .= " OR ";
+                else $sql .= " )";
+            }
+            if($result = $this->db->dbSelect($sql)){
+                if($row = $result-> fetch_assoc()){
+                    return $row['osztalyId'];
+                }
+            }
 
         }
+
+        public function checkLogin($felhNev,$jelszo){
+            $sql = "SELECT * from szemelyek where felhasznalonev ='".$felhNev."'";
+            if($result = $this->db->dbSelect($sql)){
+                if($row = $result->fetch_assoc()){
+                    if($row['jelszo'] == md5($jelszo)){
+                        $eredmeny= 2; //"Sikeres belépés;
+                        $_SESSION["nev"] = $row['nev'];
+                        $_SESSION["id"] = $row['szemelyId'];
+                    } else{
+                        $eredmeny= 1; //"Sikertelen belépés: hibás jelszó";
+                    }
+                }
+            } else{
+                $eredmeny= 0; //"Nincs ilyen felhasználónév: ";
+            }
+            return $eredmeny;
+        }
     }
+
 ?>

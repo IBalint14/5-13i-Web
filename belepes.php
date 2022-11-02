@@ -1,9 +1,11 @@
 <?php
 session_start();
 
+$eredmeny = "";
 
 if(isset($_GET['kilepes'])){
     session_unset();
+    $eredmeny = "Sikeres kilépés";
 }
 
 ?>
@@ -40,7 +42,7 @@ if(isset($_GET['kilepes'])){
 
         if(!(isset($SESSION['id']))){
             echo ('<form method ="post" action = "belepes.php">
-            Felhasználónév: <input type="text" name="felhnev" placeholder="írd be a felhasználó neved" required="required"> <br>
+            Felhasználónév: <input type="text" name="felhasznalonev" placeholder="írd be a felhasználó neved" required="required"> <br>
             Jelszó: <input type="password" name="jelszo" required="required"><br>
             <input type = "submit" value="Belépés">
             <p> <?php if(isset($_POST)) echo $eredmeny; ?> </p>
@@ -52,8 +54,8 @@ if(isset($_GET['kilepes'])){
     <title>Belépés</title>
 </head>
 <body>
-    <?php
-    echo("<a href=\"index.php\"><img src=letöltés.png></a>");
-    ?>
+    
+      <button> <a href="index.php">vissza</a></button>
+   
 </body>
 </html>

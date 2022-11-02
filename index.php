@@ -52,7 +52,7 @@ session_start();
 			echo "Üdv ". $_SESSION['nev'];
 			echo '<a href= "belepes.php?kilepes=1"> Kilépés<a>';
 		}else{
-			echo '<a href= "belepes.php"> Belépés</a>';
+			//echo '<a href= "belepes.php"> Belépés</a>';
 		}
 	?>
 
@@ -93,25 +93,34 @@ session_start();
 								$bg = "background-color:rgb(108, 167, 255);";
 
 							}										
-						if($row['sorId'] == $sajatMagam ['sorId'] and $sajatMagam['mezoNeve'] == $mezoNev){
-							echo "<td style=\"background-color:rgb(105, 219, 105);$bg\">".$nev."</td>\n";
+						//if($row['sorId'] == $sajatMagam ['sorId'] and $sajatMagam['mezoNeve'] == $mezoNev){
+							if(isset($_SESSION['id'])){
+								if($_SESSION['id'] == $row[$mezoNev]){
+									echo "<td style=\"color: green;$bg\">".$nev;
+								}else{
+									echo "<td style=\"$bg\">".$nev;
+								}
+							}else {
+								echo "<td style=\"$bg\">".$nev;
+	
+								$img= "upload/".$row[$mezoNev].".jpg";
+									if(file_exists($img)){
+									echo "<br><img src = \"$img\">";
+								}
+								echo "</td>\n";
 							}
-						 else 
-							echo "<td style=\"$bg\">".$nev."</td>\n";		
-			}
+						}
+					}
 					echo "</tr>";
 		}
 				echo'</table>';		
-	}	
-			else{
-				echo "Nincsenek tanulók eben az osztályban";
-			}			
+					
 			
 		?>
 
 	<hr>
 	<div>
-		<a href="belepes.php">Belépés</a>
+		<button><a href="belepes.php">Belépés</a></button>
 	</div>
 
 	<form action="upload.php" method="post" enctype="multipart/form-data">

@@ -12,17 +12,13 @@
          function __construct(){
         // Create connection
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-	
+            $this->conn = $conn;
         // Check connection
         if ($conn->connect_error) {
 	         die("Connection failed: " . $conn->connect_error);
-            }  
-             $this->conn = $conn;
+            }              
         }
 
-        private function connect(){
-
-        }
         public function dbSelect($sql){
             $result = $this->conn->query($sql);
                 if($result->num_rows > 0){
@@ -33,6 +29,4 @@
                 }
             }
     }
-
-  
 ?>
