@@ -1,21 +1,21 @@
 table{
   border-collapse: collapse;
   width: 50%;
-  background-color: rgb(237, 243, 160);
-  border-color: black;
+  background-color: #1D3557;
+  border-color: rgb(255, 255, 255);
   margin-left: auto;
   margin-right: auto;
   
 }
 th , td{
-    border: 2px solid #a90505;
+    border: 2px solid #D9A21B;
     text-align: center;
 }
 .magam{
     background-color: rgb(105, 219, 105);
 }
 body{
-    background-color: rgb(187, 197, 158); 
+    background-color: #1D3557; 
 }
 .center{
   margin-left: auto;
