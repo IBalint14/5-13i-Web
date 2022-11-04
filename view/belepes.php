@@ -1,46 +1,31 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tablr.css">
-    <style><?php include 'tablr.css'; ?></style>
-       
+<link rel="stylesheet" href="tablr.css">
+<?php
+    require_once 'model/db.inc.php';
+    $db = new DataBase();
+    require_once 'model/szemely.php';
+    $szemely = new Szemely($db);
+    require_once 'model/osztaly.php';
+    print_r($_POST);
 
-    <title>Belépés</title>
-</head>
+    $eredmeny = '';
+    if(isset($_POST['felhnev'] && isset($_POST['jelszo']))){
+        $login = $szemely->checkLogin($_POST['felhnev'], $_POST['jleszo']);
+    }
+?>
+
+<title>Belépés</title>
 <body>
+    <form action="login.php" method="POST">
+        Felhasználónév: <input type="text" name="felhnev" placehorder="Felhasználónév" required><br>
+        Jelszó: <input type="password" name="jelszo" required><br>
+        <input type="submit" value="Belépés" class="buttons">
+    </from>
     <?php
-            if(isset($_POST['felhasznalonev']) && isset($_POST['jelszo'])){
-                switch($login){
-                    case 0:
-                        echo '<h2 class="errormessage">Nincs ilyen felhasználónév: '.$_POST['felhnev'].'</h2>';
-                        break;
-                    case 1:
-                        echo '<h2 class="errormessage">Sikertelen belépés: Hibás jelszó!</h2>';
-                        break;
-                    case 2:
-                        echo '<h2 class="successmessage">Sikeres bejelentkezés! <br> Helló, '.$_POST['felhnev'].'</h2>';
-                        break;
-                }
-            }
-            if(!isset($_SESSION['id'])){
-                ?>
-                
-                <?php
-            }
-        ?>
-        <?php
-		if(isset($_session['id'])){
-			echo "Üdv ". $_SESSION['nev'];
-			echo '<a href= "belepes.php?kilepes=1"> Kilépés<a>';
-		}else{
-			//echo '<a href= "belepes.php"> Belépés</a>';
-		}
-	?>
-      
-      <button> <a href="index.php">vissza</a></button>
-   
-    </body>
-</html>
+        if($eredmeny == 'Sikertelen belépés: Hibás Jelszó! ' || $eredmeny == 'Nem létezik ilyen felhasználónév! '.$_POST['felhnev']){
+            echo '<p class="errormessage">'.$eredmeny.'</p>';
+        }else{
+            echo '<p class="successmessage">'.$eredmeny.'</p>';
+        }
+    ?>
+</body>
+<button>"<a hfer=index.php>Vissza</a>"</button>

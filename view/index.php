@@ -45,6 +45,9 @@ session_start();
 		}
 	?>
 	<title><?php echo "$osztalyok[$osztaly]" ?></title>
+	<?php
+	echo "<a href=belepes.php>Belépés</a>";
+	?>
 </head>
 <body>
 
