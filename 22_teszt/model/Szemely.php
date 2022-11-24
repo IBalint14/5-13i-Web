@@ -14,37 +14,37 @@ class Szemely {
         $this->db = $db;
     }
 
-    public function getNev($szemelyID) {
-        $sql = "SELECT szemelyNev FROM szemelyek WHERE szemelyID = ".$szemelyID;
+    public function getNev($szemelyId) {
+        $sql = "SELECT szemelyNev FROM szemelyek WHERE szemelyID = ".$szemelyId;
         if ($resultNev = $this->db->dbSelect($sql)) {
             $szemelySor = $resultNev->fetch_assoc();
             $this->nev = $szemelySor['nev'];
-            $this->szemelyID = $szemelyID;
+            $this->szemelyID = $szemelyId;
         }
         return $this->szemelyNev;
     }
 
     public function nevetKeres($szoveg) {
         $talalatok = array();
-        $sql = "SELECT szemelyID, nev FROM szemelyek WHERE nev LIKE '%$szoveg%'";
+        $sql = "SELECT szemelyId, nev FROM szemelyek WHERE nev LIKE '%$szoveg%'";
         if($result = $this->db->dbSelect($sql)) {
             while($row = $result->fetch_assoc()) {
-                $talalatok[$row['szemelyID']] = $row['nev'];
+                $talalatok[$row['szemelyId']] = $row['nev'];
             }
         }
         return $talalatok;
     }
 
     public function getOsztaly($szemelyId) {
-        $sql = "SELECT osztalyID FROM sorok WHERE (";
+        $sql = "SELECT osztalyId FROM sorok WHERE (";
         for($i=1;$i<=5;$i++) {
-            $sql .= " nev$i = ".$szemelyID;
+            $sql .= " nev$i = ".$szemelyId;
             if($i < 5) $sql .= " OR "; 
             else $sql .= " )"; 
         }
         if ($result = $this->db->dbSelect($sql)) {
             if($row = $result->fetch_assoc()) {
-                return $row['osztalyID'];
+                return $row['osztalyId'];
             }
         }
     }

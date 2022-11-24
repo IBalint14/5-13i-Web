@@ -3,10 +3,10 @@
 
 class DataBase {
 
-    private $servername = "localhost";
-         private $username = "phptest";
-         private $password = "USM4!0v4Xm6T]AqO";
-         private $dbname = "phpteszt";
+    private $servername = "mysql.nethely.hu";
+         private $username = "ibalint";
+         private $password = "sTzyL3k1*d2o9m!@m0xU";
+         private $dbname = "ibalint";
 
     private $conn;
 
