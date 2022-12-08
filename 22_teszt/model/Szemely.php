@@ -15,13 +15,13 @@ class Szemely {
     }
 
     public function getNev($szemelyId) {
-        $sql = "SELECT szemelyNev FROM szemelyek WHERE szemelyID = ".$szemelyId;
+        $sql = "SELECT nev FROM szemelyek WHERE szemelyId = ".$szemelyId;
         if ($resultNev = $this->db->dbSelect($sql)) {
             $szemelySor = $resultNev->fetch_assoc();
             $this->nev = $szemelySor['nev'];
-            $this->szemelyID = $szemelyId;
+            $this->szemelyId = $szemelyId;
         }
-        return $this->szemelyNev;
+        return $this->nev;
     }
 
     public function nevetKeres($szoveg) {
@@ -36,12 +36,8 @@ class Szemely {
     }
 
     public function getOsztaly($szemelyId) {
-        $sql = "SELECT osztalyId FROM sorok WHERE (";
-        for($i=1;$i<=5;$i++) {
-            $sql .= " nev$i = ".$szemelyId;
-            if($i < 5) $sql .= " OR "; 
-            else $sql .= " )"; 
-        }
+        $sql = "SELECT osztalyId FROM szemelyek WHERE szemelyId = ".$szemelyId;
+        
         if ($result = $this->db->dbSelect($sql)) {
             if($row = $result->fetch_assoc()) {
                 return $row['osztalyId'];

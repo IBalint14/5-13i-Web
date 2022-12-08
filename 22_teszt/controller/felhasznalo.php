@@ -3,7 +3,9 @@
 require 'model/Szemely.php';
 $szemely = new Szemely($db);
 
-require 'model/Osztaly.php';
+$osztalyPeldany = new Osztaly($osztaly, $db);
+
+$osztalyok = $osztalyPeldany->getAll($db);
 
 $eredmenySzovegek = array(
     "Nincs ilyen felhasználónév",
@@ -12,7 +14,6 @@ $eredmenySzovegek = array(
 );
 
 $eredmeny = "";
-$view = 'view/belepes.php';
 
 $action = $_REQUEST['action'] ?? "";
 
@@ -50,8 +51,13 @@ switch ($action) {
                 $talalatok = $szemely->nevetKeres($_POST['keresettNev']);
             }
         }
-        $view = 'view/lista.php';
+        $view = 'view/felhasznalo/lista.php';
     break;
+}
+
+if($action != 'kereses') {
+    if(!isset($_SESSION['id'])) $view = 'view/felhasznalo/belepes.php';
+    else $view = 'view/felhasznalo/feltoltes.php';
 }
 
 require $view;
