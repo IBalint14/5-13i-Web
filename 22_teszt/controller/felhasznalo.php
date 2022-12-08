@@ -59,7 +59,9 @@ switch ($action) {
             $talalatok = $szemely->nevetKeres($_GET['keresettNev']);
             }
         }
-        print_r($talalatok);
+       foreach($talalatok as $key => $val){
+        echo "<a href=\"index.php?szemelyId=".$key. "\" class=\"list-group-item list-group-item-action\">".$val."</a>";
+       }
         exit;
     break;
 }

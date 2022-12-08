@@ -78,9 +78,10 @@ function showHint(str) {
         <input type="hidden" name="page" value="felhasznalo">
         <input type="hidden" name="action" value="kereses">  
         <input name="keresettNev" class="form-control ml-sm-2" type="search" placeholder="Keresés" aria-label="Search" onkeyup="showHint(this.value)">
+        <div class="list-group" id="txtHint"></div>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
     </form>
-    <p>Suggestions: <span id="txtHint"></span></p>
+    <p>Találatok: <span id="txtHint"></span></p>
       
     </div>
 </nav>
