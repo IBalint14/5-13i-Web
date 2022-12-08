@@ -12,6 +12,23 @@
 }
 body {background-color: rgb(143, 222, 233);}
    </style>
+   <script>
+function showHint(str) {
+  if (str.length == 0) {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    xmlhttp.send();
+  }
+}
+</script>
 </head>
 <body>
 <header class="container-fluid">
@@ -60,7 +77,7 @@ body {background-color: rgb(143, 222, 233);}
     <form method="post" action="index.php" class="form-inline">
         <input type="hidden" name="page" value="felhasznalo">
         <input type="hidden" name="action" value="kereses">  
-        <input name="keresettNev" class="form-control ml-sm-2" type="search" placeholder="Keresés" aria-label="Search">
+        <input name="keresettNev" class="form-control ml-sm-2" type="search" placeholder="Keresés" aria-label="Search" onkeyup="showHint(this.value)">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
     </form>
     </div>
