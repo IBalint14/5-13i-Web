@@ -24,7 +24,7 @@ function showHint(str) {
         document.getElementById("txtHint").innerHTML = this.responseText;
       }
     };
-    xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    xmlhttp.open("GET", "index.php?page=felhasznalo&action=ajaxkereses&keresettNev=" + str, true);
     xmlhttp.send();
   }
 }
@@ -80,6 +80,8 @@ function showHint(str) {
         <input name="keresettNev" class="form-control ml-sm-2" type="search" placeholder="Keresés" aria-label="Search" onkeyup="showHint(this.value)">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
     </form>
+    <p>Suggestions: <span id="txtHint"></span></p>
+      
     </div>
 </nav>
 </header>   

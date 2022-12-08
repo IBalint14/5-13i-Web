@@ -41,7 +41,6 @@ switch ($action) {
             echo "Sorry, there was an error uploading your file.";
         }
     break;
-
     case 'kereses':
         if(isset($_POST['keresettNev'])) {
             if(strlen($_POST['keresettNev']) < 3) {
@@ -49,9 +48,19 @@ switch ($action) {
             }
             else {
                 $talalatok = $szemely->nevetKeres($_POST['keresettNev']);
-            }
+            }  
         }
         $view = 'view/felhasznalo/lista.php';
+        break;
+    case 'ajaxkereses':
+        $talalatok = "";
+        if(isset($_GET['keresettNev'])) {
+            if(strlen($_GET['keresettNev']) > 0) {
+            $talalatok = $szemely->nevetKeres($_GET['keresettNev']);
+            }
+        }
+        print_r($talalatok);
+        exit;
     break;
 }
 
