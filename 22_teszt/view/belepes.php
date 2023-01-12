@@ -1,7 +1,7 @@
 <?php
 
 $title = "BELÉPÉS";
-include 'view/layout/head.php';
+include '../view/layout/head.php';
 
     echo $eredmeny;
 

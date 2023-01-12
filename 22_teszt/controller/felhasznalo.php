@@ -3,9 +3,7 @@
 require 'model/Szemely.php';
 $szemely = new Szemely($db);
 
-$osztalyPeldany = new Osztaly($osztaly, $db);
-
-$osztalyok = $osztalyPeldany->getAll($db);
+require 'model/Osztaly.php';
 
 $eredmenySzovegek = array(
     "Nincs ilyen felhasználónév",
@@ -14,6 +12,7 @@ $eredmenySzovegek = array(
 );
 
 $eredmeny = "";
+$view = 'view/belepes.php';
 
 $action = $_REQUEST['action'] ?? "";
 
@@ -41,6 +40,7 @@ switch ($action) {
             echo "Sorry, there was an error uploading your file.";
         }
     break;
+
     case 'kereses':
         if(isset($_POST['keresettNev'])) {
             if(strlen($_POST['keresettNev']) < 3) {
@@ -48,27 +48,10 @@ switch ($action) {
             }
             else {
                 $talalatok = $szemely->nevetKeres($_POST['keresettNev']);
-            }  
-        }
-        $view = 'view/felhasznalo/lista.php';
-        break;
-    case 'ajaxkereses':
-        $talalatok = "";
-        if(isset($_GET['keresettNev'])) {
-            if(strlen($_GET['keresettNev']) > 0) {
-            $talalatok = $szemely->nevetKeres($_GET['keresettNev']);
             }
         }
-       foreach($talalatok as $key => $val){
-        echo "<a href=\"index.php?szemelyId=".$key. "\" class=\"list-group-item list-group-item-action\">".$val."</a>";
-       }
-        exit;
+        $view = 'view/lista.php';
     break;
-}
-
-if($action != 'kereses') {
-    if(!isset($_SESSION['id'])) $view = 'view/felhasznalo/belepes.php';
-    else $view = 'view/felhasznalo/feltoltes.php';
 }
 
 require $view;

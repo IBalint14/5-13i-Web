@@ -5,6 +5,14 @@
 require 'model/Szemely.php';
 $szemely = new Szemely($db);
 
+require 'model/Osztaly.php';
+
+$osztaly = 1;
+
+if(isset($_REQUEST['osztalyId'])) {
+    $osztaly = $_REQUEST['osztalyId'];
+}
+
 // melyik osztályban van a keresett személy?
 if(isset($_GET['szemelyId'])) {
     if($szemelyOsztalya = $szemely->getOsztaly($_GET['szemelyId'])) {
@@ -21,10 +29,9 @@ if(!array_key_exists($osztaly, $osztalyok)) {
 }
     
 $sql = "SELECT szemelyId, nev, sor, oszlop FROM szemelyek WHERE osztalyId = ".$osztaly;
-$sql .= " ORDER BY sor ASC, oszlop ASC";
 
 $result = $db->dbSelect($sql);
 
-require 'view/index/index.php';
+require 'view/index.php';
     
 ?>

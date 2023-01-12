@@ -3,10 +3,11 @@
 
 class DataBase {
 
-    private $servername = "mysql.nethely.hu";
-    private $username = "ibalint";
-    private $password = "sTzyL3k1*d2o9m!@m0xU";
-    private $dbname = "ibalint";
+    private $servername = "localhost";
+         private $username = "phptest";
+         private $password = "USM4!0v4Xm6T]AqO";
+         private $dbname = "phpteszt";
+         public $prefix = "alma2_";
 
     private $conn;
 
@@ -21,9 +22,6 @@ class DataBase {
         $this->conn = $conn;
     }
 
-    /**
-     * 
-     */
     public function dbSelect($sql) {
         if($result = $this->conn->query($sql)) {
             if ($result->num_rows > 0) {
